@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';import PostList from '../../components/PostList.astro';import {published} from '../../lib/posts';
+export async function getStaticPaths(){const posts=await published();return [...new Set(posts.flatMap(p=>[p.data.category]))].map(term=>({params:{term},props:{term,posts:posts.filter(p=>p.data.category===term)}}));}
+const {term,posts}=Astro.props;
+---
+<Base title={`$分類：${term}`}><p class="eyebrow">分類</p><h1>{term}</h1><PostList posts={posts}/></Base>

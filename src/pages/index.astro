@@ -1,0 +1,7 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import {published} from '../lib/posts';
+const posts=await published();
+---
+<Base><section class="hero"><div><p class="eyebrow">NOTES FROM THE ROAD & THE EDITOR</p><h1>寫程式，<br/>也寫下<span>沿途風景。</span></h1><p class="intro">我是 RR。這裡收藏工程裡的思考、單車上的風景，<br/>以及每一次出發後，想留下的旅行筆記。</p><a class="button" href="/posts/">閱讀筆記 <span>↗</span></a></div><div class="landscape" aria-hidden="true"><div class="sun"></div><div class="mountain back"></div><div class="mountain front"></div><div class="road"></div><span>KEEP EXPLORING<br/>24° N / FIELD NOTES</span></div></section><section><div class="section-title"><h2>最近的筆記</h2><a href="/posts/">所有文章 ↗</a></div><PostList posts={posts.slice(0,6)}/></section><aside class="callout"><p class="eyebrow">PROJECTS IN MOTION</p><h2>把旅程，做成可以使用的工具。</h2><p>沖繩環島、鐵駱駝路線、香川呆呆獸之旅：從文章出發，再走進互動專案。</p><a href="/projects/">探索三個專案 ↗</a></aside></Base>

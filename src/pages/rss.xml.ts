@@ -1,0 +1,2 @@
+import rss from '@astrojs/rss';import type {APIContext} from 'astro';import {published,postUrl} from '../lib/posts';
+export async function GET(context:APIContext){return rss({title:'RR Field Notes',description:'工程、單車與旅行筆記',site:context.site!,items:(await published()).map(p=>({title:p.data.title,description:p.data.description,pubDate:p.data.date,link:postUrl(p.id),categories:[p.data.category,...p.data.tags]})),customData:'<language>zh-TW</language>'});}
