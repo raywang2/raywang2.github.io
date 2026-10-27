@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';import PostList from '../../components/PostList.astro';import {published} from '../../lib/posts';
+const posts=await published();
+---
+<Base title="所有文章"><p class="eyebrow">THE JOURNAL</p><h1>所有文章</h1><p class="intro">工程、單車、旅行。將沿途的想法整理成筆記。</p><PostList posts={posts}/></Base>

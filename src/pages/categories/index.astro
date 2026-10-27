@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';import {published,termUrl} from '../../lib/posts';
+const posts=await published();const terms=[...new Set(posts.flatMap(p=>[p.data.category]))].sort();
+---
+<Base title="分類"><p class="eyebrow">EXPLORE THE NOTES</p><h1>依分類閱讀</h1><div class="chips">{terms.map(term=><a href={termUrl('categories',term)}>{term}</a>)}</div></Base>

@@ -1,0 +1,7 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import {postUrl,dateLabel,termUrl} from '../lib/posts';
+interface Props {posts:CollectionEntry<'posts'>[]}
+const {posts}=Astro.props;
+---
+<div class="post-list">{posts.map(p=><article><div class="meta"><time datetime={p.data.date.toISOString()}>{dateLabel(p.data.date)}</time><a href={termUrl('categories',p.data.category)}>{p.data.category}</a></div><h2><a href={postUrl(p.id)}>{p.data.title}<span aria-hidden="true"> ↗</span></a></h2><p>{p.data.description}</p></article>)}</div>

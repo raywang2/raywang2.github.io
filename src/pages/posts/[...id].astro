@@ -1,0 +1,6 @@
+---
+import {render} from 'astro:content';import Base from '../../layouts/Base.astro';import {published,dateLabel,termUrl} from '../../lib/posts';import {projects} from '../../data/projects';
+export async function getStaticPaths(){return (await published()).map(post=>({params:{id:post.id},props:{post}}));}
+const {post}=Astro.props;const {Content}=await render(post);const project=projects.find(p=>p.id===post.data.project);
+---
+<Base title={post.data.title} description={post.data.description} article={post.data}><article class="prose"><p class="eyebrow"><a href={termUrl('categories',post.data.category)}>{post.data.category}</a> / <time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time></p><h1>{post.data.title}</h1><p class="intro">{post.data.description}</p><Content/>{project&&<aside class="callout"><h2>延伸探索：{project.title}</h2><p>{project.description}</p><a href={`/projects/${project.id}/`}>專案介紹與關聯文章 ↗</a></aside>}<div class="chips">{post.data.tags.map(tag=><a href={termUrl('tags',tag)}>#{tag}</a>)}</div><p><a href="/posts/">← 回到所有文章</a></p></article></Base>

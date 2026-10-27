@@ -1,0 +1,4 @@
+---
+import Base from '../../layouts/Base.astro';import {projects} from '../../data/projects';
+---
+<Base title="專案"><p class="eyebrow">BUILT FOR THE JOURNEY</p><h1>從想法，到出發。</h1><p class="intro">每個專案，都有一段想走的路。</p><div class="project-grid">{projects.map(p=><article><p class="eyebrow">PROJECT / {p.number}</p><h2><a href={`/projects/${p.id}/`}>{p.title} ↗</a></h2><p>{p.description}</p></article>)}</div></Base>

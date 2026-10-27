@@ -1,0 +1,34 @@
+media:
+  input: public/uploads
+  output: /uploads
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, date, category, draft]
+      sort: date
+      order: desc
+    fields:
+      - { name: title, label: 標題, type: string, required: true }
+      - { name: description, label: 摘要, type: text, required: true }
+      - { name: date, label: 發布日期, type: date, required: true }
+      - { name: updated, label: 更新日期, type: date }
+      - name: category
+        label: 分類
+        type: select
+        required: true
+        options:
+          values: [工程, 單車, 旅行]
+      - { name: tags, label: 標籤, type: string, list: true }
+      - name: project
+        label: 關聯專案（選填）
+        type: select
+        options:
+          values: [okinawa, iron-camel, kagawa]
+      - { name: draft, label: 草稿, type: boolean, default: true }
+      - { name: body, label: 內文, type: rich-text }
